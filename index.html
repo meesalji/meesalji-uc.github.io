@@ -11,6 +11,19 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
+	  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-06B50EPCLJ"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-06B50EPCLJ');
+  </script>
+</head>
+<body>
+
+
     <title>Jahnavi Meesala's Portfolio</title>
   </head>
   <body>
@@ -255,10 +268,73 @@ Contributed to Docker-based projects, enhancing scalability and efficiency.
       </div>
       <p class="text-muted small mb-4 mb-lg-0">&copy; Typeface by Lubomila Lozanova 2023. All Rights Reserved!</p>
     </footer>
-     
+	  
+	  <!-- Digital Clock -->
+  <div id="digital-clock"></div>
+  <script>
+    function updateClock() {
+      var now = new Date();
+      var hours = now.getHours();
+      var minutes = now.getMinutes();
+      var seconds = now.getSeconds();
+      var timeString = hours + ':' + minutes + ':' + seconds;
+      document.getElementById('digital-clock').innerText = timeString;
+    }
 
+    setInterval(updateClock, 1000);
+  </script>
 
+  <!-- Jokes Display -->
+  <div id="joke"></div>
+  <script>
+    function fetchJoke() {
+      fetch('https://v2.jokeapi.dev/joke/Any')
+        .then(response => response.json())
+        .then(data => {
+          document.getElementById('joke').innerText = data.setup + '\n' + data.delivery;
+        });
+    }
 
+    fetchJoke();
+    setInterval(fetchJoke, 60000); // Fetch joke every minute
+  </script>
+
+  <!-- JavaScript Cookies -->
+  <script>
+    function setCookie(name, value, days) {
+      var expires = '';
+      if (days) {
+        var date = new Date();
+        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+        expires = '; expires=' + date.toUTCString();
+      }
+      document.cookie = name + '=' + (value || '') + expires + '; path=/';
+    }
+
+    function getCookie(name) {
+      var nameEQ = name + '=';
+      var ca = document.cookie.split(';');
+      for (var i = 0; i < ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+      }
+      return null;
+    }
+
+    function checkCookie() {
+      var lastVisit = getCookie('lastVisit');
+      if (lastVisit) {
+        alert('Welcome back! Your last visit was ' + lastVisit);
+      } else {
+        var currentDate = new Date().toUTCString();
+        setCookie('lastVisit', currentDate, 365); // Store last visit for one year
+        alert('Welcome to my homepage!');
+      }
+    }
+
+    checkCookie();
+  </script>
 
 
     
