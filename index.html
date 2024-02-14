@@ -10,6 +10,8 @@
     <link href="https://fonts.googleapis.com/css?family=Anton|Jura&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	  <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity= "sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+
 
 	  <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-06B50EPCLJ"></script>
@@ -221,6 +223,86 @@ Contributed to Docker-based projects, enhancing scalability and efficiency.
           </div>
         </div>
     </div>
+	  <!-- Digital Clock -->
+	  <div id="digital-clock"></div>
+	<canvas id="analog-clock"width="150" height="150" style="background-color:#999">
+		<script src="https://waph-uc.github.io/clock.js"></script>
+		<script type="text/javaScript">function displayTime(){
+			document.getElementById('digital-clock').innerHTML="Current time:"+new Date();
+		}
+		setInterval(displayTime,500);
+		var canvas=document.getElementById("analog-clock");
+		var ctx = canvas.getContext("2d");
+		var radius = canvas.height / 2;
+		ctx.translate(radius,radius);
+		radius=radius * 0.90
+		setInterval(drawClock,1000);
+		function drawClock() {
+
+		    drawFace(ctx, radius);
+			drawNumbers(ctx, radius);
+			drawTime(ctx,radius);
+			}
+		</script>
+		}
+	</div>
+		<div id="response"></div>
+  <script>
+    $.get("https://v2.jokeapi.dev/joke/Programming?type=single", function(result) {
+      console.log("From jokeAPI: " + JSON.stringify(result));
+      $("#response").html("A programming joke of the day: " + result.joke);
+    });
+  </script>
+		<!-- XKCD Comic Display -->
+  <div id="xkcd-comic"></div>
+  <script>
+    fetch("https://xkcd.com/info.0.json")
+      .then(response => response.json())
+      .then(data => {
+        const comicElement = document.getElementById("xkcd-comic");
+        const img = document.createElement("img");
+        img.src = data.img;
+        img.alt = data.alt;
+        comicElement.appendChild(img);
+      });
+  </script>
+
+  <!-- JavaScript Cookies -->
+  <script>
+    function setCookie(name, value, days) {
+      var expires = '';
+      if (days) {
+        var date = new Date();
+        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+        expires = '; expires=' + date.toUTCString();
+      }
+      document.cookie = name + '=' + (value || '') + expires + '; path=/';
+    }
+
+    function getCookie(name) {
+      var nameEQ = name + '=';
+      var ca = document.cookie.split(';');
+      for (var i = 0; i < ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+      }
+      return null;
+    }
+
+    function checkCookie() {
+      var lastVisit = getCookie('lastVisit');
+      if (lastVisit) {
+        alert('Welcome back! Your last visit was ' + lastVisit);
+      } else {
+        var currentDate = new Date().toUTCString();
+        setCookie('lastVisit', currentDate, 365); // Store last visit for one year
+        alert('Welcome to my homepage!');
+      }
+    }
+
+    checkCookie();
+  </script>
 
      <!--CONTACTS-->
      <h2 class="sectionHeading3">Contact Me</h2>
@@ -259,46 +341,8 @@ Contributed to Docker-based projects, enhancing scalability and efficiency.
         </div>
       </div>
     </section>
-          <!-- Digital Clock -->
-	  <div id="digital-clock"></div>
-	<canvas id="analog-clock"width="150" height="150" style="background-color:#999">
-		<script src="https://waph-uc.github.io/clock.js"></script>
-		<script type="text/javaScript">function displayTime(){
-			document.getElementById('digital-clock').innerHTML="Current time:"+new Date();
-		}
-		setInterval(displayTime,500);
-		var canvas=document.getElementById("analog-clock");
-		var ctx = canvas.getContext("2d");
-		var radius = canvas.height / 2;
-		ctx.translate(radius,radius);
-		radius=radius * 0.90
-		setInterval(drawClock,1000);
-		function drawClock() {
+          
 
-		    drawFace(ctx, radius);
-			drawNumbers(ctx, radius);
-			drawTime(ctx,radius);
-			}
-		</script>
-		}
-	</div>
-<div id="response"></div>
-  <script>
-    $.get("https://v2.jokeapi.dev/joke/Programming?type=single", function(result) {
-      console.log("From jokeAPI: " + JSON.stringify(result));
-      $("#response").html("A programming joke of the day: " + result.joke);
-    });
-  </script>
-
-  <!-- Guess Age -->
-  <!-- Add this script after the Jokes Display script -->
-  <script>
-    async function guessAge(name) {
-      const response = await fetch("https://api.agify.io/?name=" + name);
-      const result = await response.json();
-      $("#response").html("Hi " + name + ", your age should be " + result.age);
-    }
-  </script>
 
 
 
