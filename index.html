@@ -242,7 +242,9 @@ Contributed to Docker-based projects, enhancing scalability and efficiency.
             <i class="fa fa-envelope" aria-hidden="true" id="icon"></i>
             <h4 class="text-uppercase m-0">Email</h4>
             <hr class="my-4" />
-            <div class="small">meesalji@mail.uc.edu</div>
+	    <div id="email"
+	onclick="showhideEmail()">Show my email</div>
+	<script src="email.js"></script>
           </div>
         </div>
       </div>
@@ -281,71 +283,7 @@ Contributed to Docker-based projects, enhancing scalability and efficiency.
 			}
 		</script>
 		}
-	</div>
-  <!-- Jokes Display -->
-  <div id="joke"></div>
-  <script>
-    function fetchJoke() {
-      fetch('https://v2.jokeapi.dev/joke/Any')
-        .then(response => response.json())
-        .then(data => {
-          document.getElementById('joke').innerText = data.setup + '\n' + data.delivery;
-        });
-    }
-
-    fetchJoke();
-    setInterval(fetchJoke, 60000); // Fetch joke every minute
-  </script>
-		<!-- XKCD Comic Display -->
-  <div id="xkcd-comic"></div>
-  <script>
-    fetch("https://xkcd.com/info.0.json")
-      .then(response => response.json())
-      .then(data => {
-        const comicElement = document.getElementById("xkcd-comic");
-        const img = document.createElement("img");
-        img.src = data.img;
-        img.alt = data.alt;
-        comicElement.appendChild(img);
-      });
-  </script>
-
-  <!-- JavaScript Cookies -->
-  <script>
-    function setCookie(name, value, days) {
-      var expires = '';
-      if (days) {
-        var date = new Date();
-        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
-        expires = '; expires=' + date.toUTCString();
-      }
-      document.cookie = name + '=' + (value || '') + expires + '; path=/';
-    }
-
-    function getCookie(name) {
-      var nameEQ = name + '=';
-      var ca = document.cookie.split(';');
-      for (var i = 0; i < ca.length; i++) {
-        var c = ca[i];
-        while (c.charAt(0) == ' ') c = c.substring(1, c.length);
-        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
-      }
-      return null;
-    }
-
-    function checkCookie() {
-      var lastVisit = getCookie('lastVisit');
-      if (lastVisit) {
-        alert('Welcome back! Your last visit was ' + lastVisit);
-      } else {
-        var currentDate = new Date().toUTCString();
-        setCookie('lastVisit', currentDate, 365); // Store last visit for one year
-        alert('Welcome to my homepage!');
-      }
-    }
-
-    checkCookie();
-  </script>
+	
 
         <!-- Footer -->
     <footer class="footer bg-light">
