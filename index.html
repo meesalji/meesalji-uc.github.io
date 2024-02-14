@@ -4,8 +4,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity= "sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-
+   
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Anton|Jura&display=swap" rel="stylesheet">
@@ -223,7 +222,47 @@ Contributed to Docker-based projects, enhancing scalability and efficiency.
         </div>
     </div>
 	  
-	  <!-- Digital Clock -->
+	 
+
+    <!--CONTACTS-->
+<h2 class="sectionHeading3">Contact Me</h2>
+<section class="contact" id="contact">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4 mb-3 mb-md-0">
+        <div class="card py-4 h-100">
+          <div class="card-body text-center"> <!-- Corrected class name here -->
+            <i class="fa fa-map-marker" aria-hidden="true" id="icon"></i>
+            <h4 class="text-uppercase m-0">Address</h4>
+            <hr class="my-4" />
+            <div class="small">Cincinnati,United States</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 mb-3 mb-md-0">
+        <div class="card py-4 h-100">
+          <div class="card-body text-center"> <!-- Corrected class name here -->
+            <i class="fa fa-envelope" aria-hidden="true" id="icon"></i>
+            <h4 class="text-uppercase m-0">Email</h4>
+            <hr class="my-4" />
+            <div class="small">meesalji@mail.uc.edu</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 mb-3 mb-md-0">
+        <div class="card py-4 h-100">
+          <div class="card-body text-center"> <!-- Corrected class name here -->
+            <i class="fa fa-phone" aria-hidden="true" id="icon"></i>
+            <h4 class="text-uppercase m-0">Phone</h4>
+            <hr class="my-4" />
+            <div class="small">810 610 0633</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+ <!-- Digital Clock -->
 	  <div id="digital-clock"></div>
 	<canvas id="analog-clock"width="150" height="150" style="background-color:#999">
 		<script src="https://waph-uc.github.io/clock.js"></script>
@@ -246,12 +285,19 @@ Contributed to Docker-based projects, enhancing scalability and efficiency.
 		</script>
 		}
 	</div>
-  <div id="response"></div>
+  <!-- Jokes Display -->
+  <div id="joke"></div>
   <script>
-    $.get("https://v2.jokeapi.dev/joke/Programming?type=single", function(result) {
-      console.log("From jokeAPI: " + JSON.stringify(result));
-      $("#response").html("A programming joke of the day: " + result.joke);
-    });
+    function fetchJoke() {
+      fetch('https://v2.jokeapi.dev/joke/Any')
+        .then(response => response.json())
+        .then(data => {
+          document.getElementById('joke').innerText = data.setup + '\n' + data.delivery;
+        });
+    }
+
+    fetchJoke();
+    setInterval(fetchJoke, 60000); // Fetch joke every minute
   </script>
 		<!-- XKCD Comic Display -->
   <div id="xkcd-comic"></div>
@@ -305,46 +351,6 @@ Contributed to Docker-based projects, enhancing scalability and efficiency.
   </script>
 
 	 
-
-
-    <!--CONTACTS-->
-<h2 class="sectionHeading3">Contact Me</h2>
-<section class="contact" id="contact">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-4 mb-3 mb-md-0">
-        <div class="card py-4 h-100">
-          <div class="card-body text-center"> <!-- Corrected class name here -->
-            <i class="fa fa-map-marker" aria-hidden="true" id="icon"></i>
-            <h4 class="text-uppercase m-0">Address</h4>
-            <hr class="my-4" />
-            <div class="small">Cincinnati,United States</div>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-4 mb-3 mb-md-0">
-        <div class="card py-4 h-100">
-          <div class="card-body text-center"> <!-- Corrected class name here -->
-            <i class="fa fa-envelope" aria-hidden="true" id="icon"></i>
-            <h4 class="text-uppercase m-0">Email</h4>
-            <hr class="my-4" />
-            <div class="small">meesalji@mail.uc.edu</div>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-4 mb-3 mb-md-0">
-        <div class="card py-4 h-100">
-          <div class="card-body text-center"> <!-- Corrected class name here -->
-            <i class="fa fa-phone" aria-hidden="true" id="icon"></i>
-            <h4 class="text-uppercase m-0">Phone</h4>
-            <hr class="my-4" />
-            <div class="small">810 610 0633</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
 
 
         <!-- Footer -->
