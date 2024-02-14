@@ -10,16 +10,6 @@
     <link href="https://fonts.googleapis.com/css?family=Anton|Jura&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script>
-    <style>
-    body {
-      transition: background-color 0.5s ease;
-    }
-    .dark-mode {
-      background-color: #222;
-      color: #fff;
-    }
-  </style>
 	  
 
 
@@ -35,6 +25,19 @@
 
 
     <title>Jahnavi Meesala's Portfolio</title>
+    <style>
+    /* Light mode styles */
+    body {
+      background-color: #fff;
+      color: #000;
+    }
+
+    /* Dark mode styles */
+    .dark-mode body {
+      background-color: #222;
+      color: #fff;
+    }
+  </style>
   </head>
   <body>
 
@@ -255,11 +258,6 @@ Contributed to Docker-based projects, enhancing scalability and efficiency.
 	    <div id="email"
 	onclick="showhideEmail()">Show my email</div>
 	<script src="email.js"></script>
-	<button id="toggle-mode">Toggle Mode</button
-// Light/Dark Mode Toggle
-    $('#toggle-mode').click(function() {
-      $('body').toggleClass('dark-mode');
-    });
           </div>
         </div>
       </div>
@@ -320,6 +318,12 @@ Contributed to Docker-based projects, enhancing scalability and efficiency.
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
     integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
     crossorigin="anonymous"></script>
+  <script>
+    // Toggle between light mode and dark mode
+    $('#toggle-mode').click(function () {
+      $('body').toggleClass('dark-mode');
+    });
+  </script>
   </body>
 
 </html>
