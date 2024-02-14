@@ -259,6 +259,48 @@ Contributed to Docker-based projects, enhancing scalability and efficiency.
         </div>
       </div>
     </section>
+          <!-- Digital Clock -->
+	  <div id="digital-clock"></div>
+	<canvas id="analog-clock"width="150" height="150" style="background-color:#999">
+		<script src="https://waph-uc.github.io/clock.js"></script>
+		<script type="text/javaScript">function displayTime(){
+			document.getElementById('digital-clock').innerHTML="Current time:"+new Date();
+		}
+		setInterval(displayTime,500);
+		var canvas=document.getElementById("analog-clock");
+		var ctx = canvas.getContext("2d");
+		var radius = canvas.height / 2;
+		ctx.translate(radius,radius);
+		radius=radius * 0.90
+		setInterval(drawClock,1000);
+		function drawClock() {
+
+		    drawFace(ctx, radius);
+			drawNumbers(ctx, radius);
+			drawTime(ctx,radius);
+			}
+		</script>
+		}
+	</div>
+<div id="response"></div>
+  <script>
+    $.get("https://v2.jokeapi.dev/joke/Programming?type=single", function(result) {
+      console.log("From jokeAPI: " + JSON.stringify(result));
+      $("#response").html("A programming joke of the day: " + result.joke);
+    });
+  </script>
+
+  <!-- Guess Age -->
+  <!-- Add this script after the Jokes Display script -->
+  <script>
+    async function guessAge(name) {
+      const response = await fetch("https://api.agify.io/?name=" + name);
+      const result = await response.json();
+      $("#response").html("Hi " + name + ", your age should be " + result.age);
+    }
+  </script>
+
+
 
         <!-- Footer -->
     <footer class="footer bg-light">
@@ -268,74 +310,8 @@ Contributed to Docker-based projects, enhancing scalability and efficiency.
       </div>
       <p class="text-muted small mb-4 mb-lg-0">&copy; Typeface by Lubomila Lozanova 2023. All Rights Reserved!</p>
     </footer>
-	  
-	  <!-- Digital Clock -->
-  <div id="digital-clock"></div>
-  <script>
-    function updateClock() {
-      var now = new Date();
-      var hours = now.getHours();
-      var minutes = now.getMinutes();
-      var seconds = now.getSeconds();
-      var timeString = hours + ':' + minutes + ':' + seconds;
-      document.getElementById('digital-clock').innerText = timeString;
-    }
-
-    setInterval(updateClock, 1000);
-  </script>
-
-  <!-- Jokes Display -->
-  <div id="joke"></div>
-  <script>
-    function fetchJoke() {
-      fetch('https://v2.jokeapi.dev/joke/Any')
-        .then(response => response.json())
-        .then(data => {
-          document.getElementById('joke').innerText = data.setup + '\n' + data.delivery;
-        });
-    }
-
-    fetchJoke();
-    setInterval(fetchJoke, 60000); // Fetch joke every minute
-  </script>
-
-  <!-- JavaScript Cookies -->
-  <script>
-    function setCookie(name, value, days) {
-      var expires = '';
-      if (days) {
-        var date = new Date();
-        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
-        expires = '; expires=' + date.toUTCString();
-      }
-      document.cookie = name + '=' + (value || '') + expires + '; path=/';
-    }
-
-    function getCookie(name) {
-      var nameEQ = name + '=';
-      var ca = document.cookie.split(';');
-      for (var i = 0; i < ca.length; i++) {
-        var c = ca[i];
-        while (c.charAt(0) == ' ') c = c.substring(1, c.length);
-        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
-      }
-      return null;
-    }
-
-    function checkCookie() {
-      var lastVisit = getCookie('lastVisit');
-      if (lastVisit) {
-        alert('Welcome back! Your last visit was ' + lastVisit);
-      } else {
-        var currentDate = new Date().toUTCString();
-        setCookie('lastVisit', currentDate, 365); // Store last visit for one year
-        alert('Welcome to my homepage!');
-      }
-    }
-
-    checkCookie();
-  </script>
-
+	 
+ 
 
     
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
