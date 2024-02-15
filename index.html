@@ -101,7 +101,6 @@
       </div>
     </div>
   </section>
-	  <div id="typed-text"></div>
      <!-- Skills -->
      <div class="container-fluid content" id="skills">
       <h2 class="sectionHeading1">Skills</h2>
@@ -282,17 +281,6 @@ Contributed to Docker-based projects, enhancing scalability and efficiency.
 			drawTime(ctx,radius);
 			}
 		</script>
-		<script>
-  $(document).ready(function() {
-    // Initialize Typed.js
-    var typed = new Typed('#typed-text', {
-      strings: ["Hello, I am Jahnavi Meesala", "Welcome to my portfolio"],
-      typeSpeed: 50,
-      loop: true,
-      loopCount: Infinity,
-    });
-  });
-</script>
 
   <script>
     function fetchJoke() {
@@ -319,45 +307,39 @@ Contributed to Docker-based projects, enhancing scalability and efficiency.
 
 
 
-  <!-- JavaScript Cookies -->
-  <!-- Add this just before the closing </body> tag -->
   <script>
-    // JavaScript cookies code
-    function setCookie(name, value, days) {
-      var expires = '';
-      if (days) {
-        var date = new Date();
-        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
-        expires = '; expires=' + date.toUTCString();
-      }
-      document.cookie = name + '=' + (value || '') + expires + '; path=/';
-    }
-
-    function getCookie(name) {
-      var nameEQ = name + '=';
-      var ca = document.cookie.split(';');
-      for (var i = 0; i < ca.length; i++) {
-        var c = ca[i];
-        while (c.charAt(0) == ' ') c = c.substring(1, c.length);
-        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
-      }
-      return null;
-    }
-
-    function checkCookie() {
-      var lastVisit = getCookie('lastVisit');
-      if (lastVisit) {
-        alert('Welcome back! Your last visit was ' + lastVisit);
-      } else {
-        var currentDate = new Date().toUTCString();
-        setCookie('lastVisit', currentDate, 365); // Store last visit for one year
-        alert('Welcome to my homepage!');
-      }
-    }
-
-    checkCookie();
-  </script>
-		
+          // Function to set a cookie
+          function setCookie(name, value, days) {
+            const expires = new Date();
+            expires.setTime(expires.getTime() + days * 24 * 60 * 60 * 1000);
+            document.cookie = ${name}=${value};expires=${expires.toUTCString()};path=/;
+          }
+      
+          // Function to get the value of a cookie by name
+          function getCookie(name) {
+            const keyValue = document.cookie.match((^|;) ?${name}=([^;]*)(;|$));
+            return keyValue ? keyValue[2] : null;
+          }
+      
+          // Function to display a welcome message based on cookie
+          function displayWelcomeMessage() {
+            const lastVisit = getCookie('lastVisit');
+      
+            if (!lastVisit) {
+              // First-time visit
+              const currentDate = new Date().toLocaleString();
+              alert('Welcome to my homepage!');
+              setCookie('lastVisit', currentDate, 365); // Set cookie to expire in 365 days
+            } else {
+              // Returning visit
+              alert(Welcome back! Your last visit was ${lastVisit});
+            }
+          }
+      
+          // Call the function on page load
+          window.onload = displayWelcomeMessage;
+        </script>
+  <canvas id="myChart" width="712" height="356" style="display: block; box-sizing: border-box; height: 237px; width: 475px;"></canvas>
 	 
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <!-- jQuery and JavaScript -->
