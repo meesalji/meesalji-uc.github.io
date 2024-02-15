@@ -249,4 +249,4 @@ output of the code:
 
 ## Submission
 
-Pandoc tool is used to generate the report in pdf format from the README.md file. The pdf is named as meesalji-waph-hackathons.pdf
+Pandoc tool is used to generate the report in pdf format from the README.md file. The pdf is named as meesalji-waph-project.pdf
