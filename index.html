@@ -4,12 +4,15 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>To-Do List</title>
    
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Anton|Jura&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+         
+
 	  
 
 
@@ -266,7 +269,7 @@ Contributed to Docker-based projects, enhancing scalability and efficiency.
 </section>
  <!-- Digital Clock -->
 	  <div id="digital-clock"></div>
-
+           <button id="toggle-mode" class="btn btn-dark">Toggle Dark Mode</button>
 	<canvas id="analog-clock"width="150" height="150" style="background-color:#999">
 		<script src="https://waph-uc.github.io/clock.js"></script>
 		<script type="text/javaScript">function displayTime(){
@@ -318,6 +321,14 @@ Contributed to Docker-based projects, enhancing scalability and efficiency.
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
     integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
     crossorigin="anonymous"></script>
+
+	!-- JavaScript code for dark mode/light mode toggle -->
+    <script>
+        // Toggle between light mode and dark mode
+        $('#toggle-mode').click(function () {
+            $('body').toggleClass('dark-mode');
+        });
+    </script>
   
   </body>
 
