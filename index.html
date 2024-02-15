@@ -284,6 +284,73 @@ Contributed to Docker-based projects, enhancing scalability and efficiency.
 			}
 		</script>
 		}
+		// Joke Display
+    function fetchJoke() {
+      $.get('https://v2.jokeapi.dev/joke/Any', function(data) {
+        $('#joke').text(data.joke);
+      });
+    }
+    fetchJoke();
+    setInterval(fetchJoke, 60000); // Fetch new joke every minute
+
+    // Public API Integration with Graphics (Weather Chart)
+    const ctx = document.getElementById('weather-chart').getContext('2d');
+    const weatherChart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+        datasets: [{
+          label: 'Temperature (°C)',
+          data: [20, 22, 25, 23, 21],
+          backgroundColor: 'rgba(54, 162, 235, 0.5)',
+          borderColor: 'rgba(54, 162, 235, 1)',
+          borderWidth: 1
+        }]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    });
+
+    // JavaScript Cookies
+    function setCookie(name, value, days) {
+      var expires = '';
+      if (days) {
+        var date = new Date();
+        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+        expires = '; expires=' + date.toUTCString();
+      }
+      document.cookie = name + '=' + (value || '') + expires + '; path=/';
+    }
+
+    function getCookie(name) {
+      var nameEQ = name + '=';
+      var ca = document.cookie.split(';');
+      for (var i = 0; i < ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+      }
+      return null;
+    }
+
+    function checkCookie() {
+      var lastVisit = getCookie('lastVisit');
+      if (lastVisit) {
+        alert('Welcome back! Your last visit was ' + lastVisit);
+      } else {
+        var currentDate = new Date().toUTCString();
+        setCookie('lastVisit', currentDate, 365); // Store last visit for one year
+        alert('Welcome to my homepage!');
+      }
+    }
+
+    checkCookie();
+  </script>
 
         <!-- Footer -->
     <footer class="footer bg-light">
@@ -294,61 +361,7 @@ Contributed to Docker-based projects, enhancing scalability and efficiency.
       <p class="text-muted small mb-4 mb-lg-0">&copy; Typeface by Jahnavi Meesala 2023. All Rights Reserved!</p>
     </footer>
 
-   <!-- JavaScript code -->
-  <script>
-    $(document).ready(function() {
-      // Check if the client has visited before using cookies
-      var lastVisit = getCookie("lastVisit");
-      if (lastVisit) {
-        // Display welcome back message with last visit date
-        alert("Welcome back! Your last visit was " + lastVisit);
-      } else {
-        // Display welcome message for first-time visitors
-        alert("Welcome to my homepage!");
-      }
 
-      // Set a cookie to remember the client's visit
-      var currentDate = new Date();
-      var expires = new Date(currentDate.getTime() + 30 * 24 * 60 * 60 * 1000); // Cookie expires in 30 days
-      document.cookie = "lastVisit=" + currentDate + "; expires=" + expires.toUTCString() + "; path=/";
-
-      // Function to get cookie value
-      function getCookie(name) {
-        var nameEQ = name + "=";
-        var ca = document.cookie.split(';');
-        for (var i = 0; i < ca.length; i++) {
-          var c = ca[i];
-          while (c.charAt(0) === ' ') c = c.substring(1, c.length);
-          if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
-        }
-        return null;
-      }
-    });
-  </script>
-    <!-- JavaScript code -->
-  <script>
-    $(document).ready(function() {
-      // Function to fetch data from XKCD Comics API
-      function fetchXKCDComic() {
-        $.ajax({
-          url: 'https://xkcd.com/info.0.json',
-          dataType: 'json',
-          success: function(data) {
-            // Display comic image on the webpage
-            var comicImg = $('<img>').attr('src', data.img);
-            $('#comic-container').append(comicImg);
-          },
-          error: function() {
-            console.error('Error fetching XKCD comic data');
-          }
-        });
-      }
-
-      // Call the fetchXKCDComic function to fetch and display the latest XKCD comic
-      fetchXKCDComic();
-    });
-  </script>
-     
 		
 	 
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
