@@ -80,6 +80,9 @@
       </div>
       </div>
 	  
+<button id="scrollToTopBtn" title="Go to top">Top</button>
+
+	  
 
     <!-- About Me -->
   
@@ -291,14 +294,6 @@ Contributed to Docker-based projects, enhancing scalability and efficiency.
 		</script>
 		}
 
-	<script>
-        // JavaScript code for custom functionality
-        document.getElementById('custom-button').addEventListener('click', function() {
-            alert('You clicked the button!');
-        });
-    </script>
-	
-
         <!-- Footer -->
     <footer class="footer bg-light">
       <div class="social d-flex justify-content-center">
@@ -307,7 +302,6 @@ Contributed to Docker-based projects, enhancing scalability and efficiency.
       </div>
       <p class="text-muted small mb-4 mb-lg-0">&copy; Typeface by Lubomila Lozanova 2023. All Rights Reserved!</p>
     </footer>
-
 	
 		
 	 
@@ -321,14 +315,24 @@ Contributed to Docker-based projects, enhancing scalability and efficiency.
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
     integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
     crossorigin="anonymous"></script>
+		
+    $(document).ready(function() {
+  $(window).scroll(function() {
+    if ($(this).scrollTop() > 100) {
+      $('#scrollToTopBtn').fadeIn();
+    } else {
+      $('#scrollToTopBtn').fadeOut();
+    }
+  });
+  
+  // Scroll to the top of the page when the button is clicked
+  $('#scrollToTopBtn').click(function() {
+    $('html, body').animate({scrollTop : 0}, 800);
+    return false;
+  });
+});
 
-	!-- JavaScript code for dark mode/light mode toggle -->
-    <script>
-        // Toggle between light mode and dark mode
-        $('#toggle-mode').click(function () {
-            $('body').toggleClass('dark-mode');
-        });
-    </script>
+
   
   </body>
 
