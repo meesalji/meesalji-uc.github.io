@@ -4,6 +4,15 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-06B50EPCLJ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-06B50EPCLJ');
+</script>
    <title>Random Image Slideshow</title>
 <style>
   /* CSS for image container */
@@ -27,15 +36,6 @@
     <link href="https://fonts.googleapis.com/css?family=Anton|Jura&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-	  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-06B50EPCLJ"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
-        gtag('config', 'G-06B50EPCLJ');
-    </script>
 
 
     <title>Jahnavi Meesala's Portfolio</title>
@@ -87,6 +87,10 @@
           </div>
       </div>
     </div>
+<div id="color-element" style="width: 200px; height: 200px; margin-top: 20px; background-color: #ffffff;">
+<button id="color-button">Change Background Color</button>
+</div>
+
 
 
     <!-- About Me -->
@@ -386,6 +390,22 @@ changeImage();
     displayWelcomeMessage();
   });
 </script>
+
+		<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+  $(document).ready(function() {
+    // Event listener for the color button click
+    $('#color-button').click(function() {
+      // Generate a random color in hexadecimal format
+      var randomColor = '#' + Math.floor(Math.random()*16777215).toString(16);
+      
+      // Change the background color of the color-element to the random color
+      $('#color-element').css('background-color', randomColor);
+    });
+  });
+</script>
+
 
 	 
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
