@@ -4,9 +4,6 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-     <title>Current Weather</title>
-    <!-- Include jQuery library -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
    
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -26,8 +23,6 @@
 
 
     <title>Jahnavi Meesala's Portfolio</title>
-    <h1>Current Weather</h1>
-    <div id="weatherInfo"></div>
     
   </head>
   <body>
@@ -249,6 +244,8 @@ Contributed to Docker-based projects, enhancing scalability and efficiency.
 	    <div id="email"
 	onclick="showhideEmail()">Show my email</div>
 	<script src="email.js"></script>
+		  <canvas id="myChart" width="400" height="400"></canvas>
+    <script src="script.js"></script>
           </div>
         </div>
       </div>
@@ -265,6 +262,9 @@ Contributed to Docker-based projects, enhancing scalability and efficiency.
     </div>
   </div>
 </section>
+	  <title>Chart Example</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
  <!-- Digital Clock -->
 	  <div id="digital-clock"></div>
 	<canvas id="analog-clock"width="150" height="150" style="background-color:#999">
@@ -299,37 +299,6 @@ Contributed to Docker-based projects, enhancing scalability and efficiency.
     fetchJoke();
     setInterval(fetchJoke, 60000); // Fetch joke every minute
   </script>
-
-		 <script>
-        // Function to fetch and display current weather
-        function getCurrentWeather() {
-            // API key for OpenWeatherMap
-            var apiKey = 'YOUR_API_KEY'; // Replace with your own API key
-
-            // API endpoint for current weather
-            var apiUrl = 'https://api.openweathermap.org/data/2.5/weather?q=Cincinnati,US&units=metric&appid=' + apiKey;
-
-            // Fetch weather data from OpenWeatherMap API
-            $.getJSON(apiUrl, function(data) {
-                // Extract relevant weather information
-                var temperature = data.main.temp;
-                var description = data.weather[0].description;
-                var cityName = data.name;
-
-                // Display the weather information on the webpage
-                $('#weatherInfo').html('<p>Current temperature in ' + cityName + ': ' + temperature + '°C</p><p>Weather description: ' + description + '</p>');
-            });
-        }
-
-        // Call the getCurrentWeather function when the page is loaded
-        $(document).ready(function() {
-            getCurrentWeather(); // Fetch and display current weather initially
-            // Update weather every 10 minutes
-            setInterval(getCurrentWeather, 600000);
-        });
-    </script>
-
-  
 		
         <!-- Footer -->
     <footer class="footer bg-light">
