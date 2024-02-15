@@ -305,10 +305,7 @@ Contributed to Docker-based projects, enhancing scalability and efficiency.
       </div>
       <p class="text-muted small mb-4 mb-lg-0">&copy; Typeface by Jahnavi Meesala 2023. All Rights Reserved!</p>
     </footer>
-
-		<!-- Include jQuery -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
 <script>
   // Function to set a cookie
   function setCookie(name, value, days) {
@@ -329,9 +326,16 @@ Contributed to Docker-based projects, enhancing scalability and efficiency.
 
     if (!lastVisit) {
       // First-time visit
-      const currentDate = new Date().toLocaleString();
+      const currentDate = new Date();
+      const day = currentDate.getDate();
+      const month = currentDate.getMonth() + 1; // Months are zero-based
+      const year = currentDate.getFullYear();
+      const hours = currentDate.getHours();
+      const minutes = currentDate.getMinutes();
+      const seconds = currentDate.getSeconds();
+      const formattedDate = `${day}/${month}/${year} ${hours}:${minutes}:${seconds}`;
       alert('Welcome to my homepage!');
-      setCookie('lastVisit', currentDate, 365); // Set cookie to expire in 365 days
+      setCookie('lastVisit', formattedDate, 365); // Set cookie to expire in 365 days
     } else {
       // Returning visit
       alert(`Welcome back! Your last visit was ${lastVisit}`);
@@ -343,9 +347,6 @@ Contributed to Docker-based projects, enhancing scalability and efficiency.
     displayWelcomeMessage();
   });
 </script>
-
-<canvas id="myChart" width="712" height="356" style="display: block; box-sizing: border-box; height: 237px; width: 475px;"></canvas>
-
 
 	 
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
