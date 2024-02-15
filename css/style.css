@@ -96,7 +96,17 @@
     margin-bottom: 25px;
   }
   
-  
+  /* Light mode styles */
+body {
+    background-color: #fff;
+    color: #000;
+}
+
+/* Dark mode styles */
+.dark-mode body {
+    background-color: #222;
+    color: #fff;
+}
   
   /* ABOUT ME*/
   .aboutme {
