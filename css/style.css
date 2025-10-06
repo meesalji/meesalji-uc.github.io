@@ -1,384 +1,269 @@
+/* ---------------------------------------------------------------------- */
+/* 1. COLOR PALETTE & VARIABLES (Inspired by Target Site) */
+/* ---------------------------------------------------------------------- */
 :root {
-    /* Color Palette Refinement: More intentional and higher contrast */
-    --primary-dark: #272932;       /* Near-black, used for navigation/main background */
-    --secondary-dark: #31293F;     /* Deep muted purple/dark background tone */
-    --accent-light: #D3D9E9;       /* Light text color, good contrast on dark */
-    --text-body: #A6A9C8;          /* Soft purple for secondary text */
-    --highlight: #FFB6C1;          /* Your light pink/button color (Cherry Blossom Pink) */
-    --highlight-hover: #E89BB2;    /* Slightly darker for hover states */
-    --light-bg: #F8EDEB;           /* Used for cards/light sections (similar to your contact card) */
+    --primary-bg: #FFFFFF;        /* White background for most sections */
+    --secondary-bg: #F8F8F8;      /* Very light gray for alternating sections */
+    --primary-text: #222222;      /* Near-black for main text */
+    --secondary-text: #666666;    /* Dark gray for descriptions */
+    --accent-color: #FFB6C1;      /* Your existing highlight (Cherry Blossom Pink) */
+    --accent-hover: #E89BB2;      /* Slightly darker pink for hover */
+    --font-heading: 'Poppins', sans-serif;
+    --font-body: 'Poppins', sans-serif;
 }
 
-
-/* ---------------------------------------------------------------------- */
-/* 1. TYPOGRAPHY AND BASE STYLES */
-/* ---------------------------------------------------------------------- */
-
-h1, h2, h3, h4, h5, h6 {
-    /* Jura is fine, but ensure 'Anton' (from HTML) is not used for body text as it's too blocky */
-    font-family: 'Jura', sans-serif;
-    color: var(--accent-light); /* Default dark text on light backgrounds */
+/* Base Styles */
+body {
+    font-family: var(--font-body);
+    color: var(--primary-text);
+    background-color: var(--primary-bg);
+}
+h1, h2, h3, h4 {
+    font-family: var(--font-heading);
+    color: var(--primary-text);
+    font-weight: 600;
 }
 p {
-    font-family: Arial, Helvetica, sans-serif;
-    line-height: 1.6;
-    color: var(--text-body);
+    color: var(--secondary-text);
+    line-height: 1.7;
 }
-
-.sectionHeading1, .sectionHeading2, .sectionHeading3 {
-    text-align: center;
-    font-size: 3rem; /* Use REM for better scaling */
-    padding: 1.5rem 0;
-    margin-top: 1rem;
-    color: var(--secondary-dark); /* Contrast for light sections */
+.section-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 3rem;
+    color: var(--primary-text);
 }
-
 /* ---------------------------------------------------------------------- */
 /* 2. NAVIGATION BAR */
 /* ---------------------------------------------------------------------- */
-
 .customNav {
-    position: sticky; /* Better than fixed, keeps it attached to the top */
-    top: 0;
-    width: 100%;
-    background-color: var(--primary-dark);
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5); /* Add subtle shadow */
-    z-index: 10;
+    background-color: var(--primary-bg);
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.05); /* Very light shadow */
+    border-bottom: 1px solid #eeeeee;
 }
 .navbar-brand {
-    color: var(--highlight) !important;
-    font-weight: bold;
+    font-weight: 700;
+    font-size: 1.5rem;
+    color: var(--primary-text) !important;
 }
-.navbar-brand img {
-    padding-right: 15px;
-    width: 60px; /* Slightly smaller for professionalism */
+.navbar-toggler i {
+    color: var(--primary-text);
+    font-size: 1.5rem;
 }
-.navbar-nav {
-    margin-left: auto;
-    margin-right: 0 !important;
+.navbar-nav .nav-link {
+    color: var(--secondary-text) !important;
+    font-weight: 600;
+    transition: color 0.3s, border-bottom 0.3s;
+    padding: 0.5rem 1rem !important;
 }
-.nav-item {
-    margin: 0 0.5rem; /* Use rem for spacing */
+.navbar-nav .nav-link:hover {
+    color: var(--accent-color) !important;
+    border-bottom: 2px solid var(--accent-color);
 }
-
-/* Navigation links */
-.customNav a {
-    color: var(--accent-light) !important;
-    padding: 0.5rem 0.75rem; /* Added padding for better click target */
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
-}
-.nav-link:hover, .dropdown-item:focus, .dropdown-item:hover {
-    background: var(--secondary-dark); /* Use a shade from your palette */
-    color: white !important;
-}
-
-/* Navigation dropdown menu */
-/* Removed image background for dropdown, kept dark/transparent look */
-.dropdown-menu {
-    background-color: var(--primary-dark) !important;
-    border: 1px solid var(--secondary-dark);
-}
-.dropdown-item {
-    color: var(--accent-light) !important;
-}
-.dropdown-divider {
-    border-top: 1px solid var(--secondary-dark);
-}
-
 /* ---------------------------------------------------------------------- */
-/* 3. HERO / JUMBOTRON */
+/* 3. HERO SECTION */
 /* ---------------------------------------------------------------------- */
-
-.jumbotron {
-    /* IMPORTANT: Make sure this image (bck2.jpg) is high-quality and professional */
-    background-image: url(../images/bck2.jpg);
-    background-size: cover;
-    background-position: center; /* Ensures the focus of the image is visible */
-    background-repeat: no-repeat;
-    height: 70vh; /* Reduced from 80vh for less screen dominance */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 0; /* Remove default jumbotron margin */
-    padding-top: 80px; /* Space for the fixed nav bar */
+.hero-section {
+    padding: 8rem 0 6rem 0; /* Generous top/bottom padding for space */
+    background-color: var(--primary-bg);
 }
-
-.jumbotext {
-    width: 90%; /* Increased width for mobile/tablet */
-    max-width: 800px; /* Set a max-width for desktop readability */
+.hero-section .greeting-text {
+    font-size: 1.25rem;
+    font-weight: 400;
+    margin-bottom: 0.5rem;
+    color: var(--secondary-text);
+}
+.hero-section h1 {
+    font-size: 4rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+    line-height: 1.1;
+}
+.hero-section .intro-tagline {
+    font-size: 1.5rem;
+    max-width: 800px;
+    margin: 0 auto 1.5rem auto;
+    font-weight: 300;
+    color: var(--secondary-text);
+}
+.hero-section .mission-statement {
+    font-size: 1.1rem;
+    font-style: italic;
+    color: var(--secondary-text);
+}
+.hero-links .btn-primary {
+    background-color: var(--accent-color);
+    border-color: var(--accent-color);
     color: white;
-    text-align: center !important;
-    background: rgba(0, 0, 0, 0.4); /* Subtle overlay for text readability */
-    padding: 20px;
-    border-radius: 8px;
+    font-weight: 600;
+    padding: 0.75rem 2rem;
+    transition: background-color 0.3s;
+}
+.hero-links .btn-primary:hover {
+    background-color: var(--accent-hover);
+    border-color: var(--accent-hover);
+}
+.hero-links .btn-secondary {
+    background: none;
+    border: 2px solid var(--secondary-text);
+    color: var(--secondary-text);
+    font-weight: 600;
+    padding: 0.75rem 2rem;
+    transition: background-color 0.3s, color 0.3s;
+}
+.hero-links .btn-secondary:hover {
+    background-color: var(--primary-text);
+    color: white;
+    border-color: var(--primary-text);
 }
 
-.jumbotext h1 {
-    font-size: 3rem; /* Responsive sizing */
+/* ---------------------------------------------------------------------- */
+/* 4. ABOUT & SKILLS SECTION */
+/* ---------------------------------------------------------------------- */
+.about-skills-section {
+    padding: 4rem 0;
+    background-color: var(--secondary-bg); /* Use light grey background for contrast */
+}
+.about-skills-section h2 {
+    font-size: 2rem;
+    border-bottom: 3px solid var(--accent-color);
+    padding-bottom: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+.skills-list {
+    list-style: none;
+    padding-left: 0;
+}
+.skills-list li {
+    background-color: white;
+    padding: 10px 15px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    border-left: 5px solid var(--accent-color);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    color: var(--primary-text);
+}
+/* ---------------------------------------------------------------------- */
+/* 5. PROJECTS SECTION (Case Study Style) */
+/* ---------------------------------------------------------------------- */
+.projects-section {
+    padding: 6rem 0;
+    background-color: var(--primary-bg);
+}
+.project-card {
+    display: flex;
+    align-items: flex-start;
+    border-bottom: 1px solid #dddddd;
+    padding: 2.5rem 0;
+    max-width: 900px;
+    margin: 0 auto;
+    transition: background-color 0.3s;
+}
+.project-card:hover {
+    background-color: var(--secondary-bg);
+    cursor: pointer;
+}
+.project-number {
+    font-size: 3.5rem;
+    font-weight: 700;
+    color: var(--accent-color);
+    flex-shrink: 0;
+    margin-right: 3rem;
+    margin-top: -10px;
+}
+.project-content {
+    flex-grow: 1;
+}
+.project-title {
+    font-size: 1.75rem;
+    font-weight: 600;
     margin-bottom: 0.5rem;
 }
-.jumbotext p {
-    font-size: 1.5rem;
-    color: var(--highlight); /* Use highlight color for key message */
-    font-weight: 500;
-}
-
-/* ---------------------------------------------------------------------- */
-/* 4. ABOUT ME */
-/* ---------------------------------------------------------------------- */
-
-.aboutme {
-    margin-top: 0;
-    padding: 3rem 0;
-    /* Removed background image (bck6.png) for a cleaner, more readable section */
-    background-color: var(--light-bg);
-    height: auto; /* Auto height is better for responsive content */
-}
-#pannel {
-    background-color: white; /* Clean white panel is more professional */
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    padding: 2rem;
-}
-.aboutme h2 {
-    color: var(--primary-dark);
-}
-.aboutme h3 {
-    color: var(--secondary-dark);
-    margin-top: 0;
-}
-.aboutme p {
-    color: var(--primary-dark);
-}
-.img-fluid {
-    max-width: 100%; /* Ensure it adapts to its column */
-    height: auto;
-    border: 5px solid var(--highlight); /* Professional border accent */
-}
-
-.btn1 {
-    background-color: var(--highlight);
-    color: var(--primary-dark) !important;
-    border-color: var(--highlight);
-    transition: background-color 0.3s;
-    font-weight: bold;
-}
-.btn1:hover {
-    background-color: var(--highlight-hover);
-    color: white !important;
-}
-#download {
-    color: var(--primary-dark);
-}
-
-/* ---------------------------------------------------------------------- */
-/* 5. SKILLS */
-/* ---------------------------------------------------------------------- */
-
-#skills {
-    padding: 3rem 0;
-    /* Removed background image (bck7.png) for a cleaner section */
-    background-color: var(--secondary-dark); /* Dark background for skills contrast */
-}
-
-.sectionHeading1 {
-    color: white;
-}
-.cardContainer {
-    padding: 1rem;
-}
-.card-body {
-    background-color: white; /* Clean white card body */
-    padding: 1.5rem;
-    height: 100%; /* Ensures all cards are the same height */
-}
-.card-title {
-    color: var(--primary-dark);
-    border-bottom: 2px solid var(--highlight);
-    padding-bottom: 0.5rem;
+.project-description {
     margin-bottom: 1rem;
 }
-.card-text {
-    color: var(--secondary-dark);
-    padding-left: 0;
-    list-style-position: inside;
+.project-category {
+    display: inline-block;
+    color: var(--secondary-text);
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
 }
-.card img {
-    /* Max width of 100% is fine, ensure images are cropped nicely */
-}
-
-/* ---------------------------------------------------------------------- */
-/* 6. WORK & PROJECTS */
-/* ---------------------------------------------------------------------- */
-
-.sectionHeading2 {
-    color: var(--secondary-dark);
-}
-
-.row1, .row2, .row3 {
-    /* Replaced image background (bck4.png) with solid color for clean case study blocks */
-    background-color: var(--secondary-dark);
-    padding: 30px;
-    margin-bottom: 25px;
-    border-radius: 8px;
-    width: 100%; /* Fill the container */
-    height: auto; /* Dynamic height is better */
-    display: flex;
-    align-items: center;
-    transition: box-shadow 0.3s ease;
-}
-.row1:hover, .row2:hover, .row3:hover {
-    box-shadow: 0 0 20px rgba(255, 182, 193, 0.3); /* Subtle glow on hover */
-}
-
-.imageContainer {
-    flex-shrink: 0;
-    padding-right: 20px;
-}
-.imageContainer img {
-    width: 100px; /* Smaller, cleaner icons */
-    height: 100px;
-    object-fit: cover;
-    border: 3px solid var(--highlight);
-    padding: 5px;
-}
-
-.text1, .text2, .text3 {
-    text-align: left;
-    margin: 0; /* Removed hard-coded margins to use flexbox */
-    color: var(--accent-light);
-}
-.text1 h3, .text2 h3, .text3 h3 {
-    font-size: 2rem;
-    margin-bottom: 0.5rem;
-}
-.text1 p, .text2 p, .text3 p {
-    font-size: 1rem;
-    color: var(--text-body);
-}
-
-.btn {
-    background-color: var(--highlight);
-    color: var(--primary-dark) !important;
-    border: none;
-    font-weight: bold;
-    margin-top: 10px;
-}
-.btn:hover {
-    background-color: var(--highlight-hover);
-}
-
-/* ---------------------------------------------------------------------- */
-/* 7. CONTACT */
-/* ---------------------------------------------------------------------- */
-
-.contact {
-    padding: 3rem 0;
-    /* Removed background image (bck8.png) for better readability */
-    background-color: var(--light-bg);
-}
-
-.sectionHeading3 {
-    color: var(--secondary-dark);
-}
-.card {
-    background-color: white; /* Clean white card */
-    border: 1px solid #e0e0e0;
-}
-#icon {
-    color: var(--highlight);
-    font-size: 2rem;
-}
-
-/* ---------------------------------------------------------------------- */
-/* 8. FOOTER */
-/* ---------------------------------------------------------------------- */
-
-.footer {
-    background-color: var(--primary-dark);
-    padding: 2rem 0;
-}
-.footer p {
-    color: var(--text-body);
-    font-size: 0.8rem;
-    margin: 0.5rem 0 0 0;
-}
-.fa {
-    color: var(--highlight); /* Highlight color for social icons */
-    font-size: 1.5rem;
+.project-link {
+    display: block;
+    color: var(--primary-text);
+    font-weight: 600;
+    text-decoration: none;
     transition: color 0.3s;
 }
-.fa:hover {
-    color: var(--accent-light);
+.project-link:hover {
+    color: var(--accent-color);
+}
+/* ---------------------------------------------------------------------- */
+/* 6. CONTACT FOOTER */
+/* ---------------------------------------------------------------------- */
+.contact-footer {
+    padding: 4rem 0;
+    background-color: var(--primary-text); /* Black/Dark Footer for professionalism */
+    color: white;
+}
+.contact-footer .section-title {
+    color: white;
+    margin-bottom: 1.5rem;
+}
+.contact-footer .contact-info p {
+    font-size: 1.25rem;
+    color: white;
+    margin: 0.5rem 0;
+}
+.social-links a {
+    color: white;
+    font-size: 2rem;
+    transition: color 0.3s;
+}
+.social-links a:hover {
+    color: var(--accent-color);
+}
+.copyright-text {
+    color: var(--secondary-text);
+    font-size: 0.85rem;
+    margin-top: 2rem;
 }
 
 /* ---------------------------------------------------------------------- */
-/* 9. MEDIA QUERIES (Simplified & Optimized) */
+/* 7. MEDIA QUERIES (Mobile Responsiveness) */
 /* ---------------------------------------------------------------------- */
-
-/* Tablet and Smaller Desktops (Max-width: 992px) */
-@media (max-width: 992px) {
-    .jumbotext h1 {
-        font-size: 2.5rem;
+@media (max-width: 768px) {
+    .hero-section {
+        padding: 5rem 0 3rem 0;
     }
-    .jumbotext p {
+    .hero-section h1 {
+        font-size: 3rem;
+    }
+    .hero-section .intro-tagline {
         font-size: 1.25rem;
     }
-
-    /* About me vertical stacking */
-    .img-fluid {
-        margin-left: auto;
-        margin-right: auto;
+    .hero-links .btn {
         display: block;
-        margin-bottom: 1rem;
+        margin-left: 0 !important;
+        margin-bottom: 10px;
     }
-
-    /* Skills - cards stack naturally on smaller screens due to Bootstrap, but clean up margins */
-    #skills {
-        padding: 3rem 1rem;
-    }
-
-    /* Projects - Revert to simple column layout for smaller screens */
-    .row1, .row2, .row3 {
+    .project-card {
         flex-direction: column;
         text-align: center;
-        height: auto;
+        padding: 2rem 0;
     }
-    .imageContainer {
-        padding-right: 0;
-        padding-bottom: 1rem;
+    .project-number {
+        margin-right: 0;
+        margin-bottom: 1rem;
     }
-    .text1, .text2, .text3 {
+    .project-content {
+        text-align: left;
+    }
+    .project-title {
         text-align: center;
     }
-    .text1 h3, .text2 h3, .text3 h3 {
-        margin-top: 0;
-    }
-}
-
-/* Mobile Phones (Max-width: 600px) */
-@media (max-width: 600px) {
-    .jumbotron {
-        height: 50vh;
-    }
-    .jumbotext h1 {
-        font-size: 2rem;
-    }
-    .jumbotext p {
-        font-size: 1rem;
-    }
-    .sectionHeading1, .sectionHeading2, .sectionHeading3 {
-        font-size: 2rem;
-    }
-    .aboutme p {
-        font-size: 1rem;
-    }
-    .card-title {
-        font-size: 1.25rem;
-    }
-    /* Contact cards should stack on mobile */
-    .contact .col-md-4 {
-        margin-bottom: 1.5rem;
+    .project-description {
+        text-align: justify;
     }
 }
