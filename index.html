@@ -1,175 +1,345 @@
-<!DOCTYPE html>
-<html lang="en-gb">
+import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
+import { ArrowRight, Mail, Github, Linkedin, Phone, Download, ExternalLink, Cpu, Server, Cloud, Shield, Layers, Boxes, Code } from "lucide-react";
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Jahnavi Meesala - Senior Software Engineer | Java, Microservices, AWS</title>
+/*
+  Portfolio for Jahnavi — inspired by the clean, type-driven aesthetic of sanjeevsriram.com, 
+  adapted to highlight full‑stack engineering + UX sensibility.
 
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-    
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="css/style.css">
-</head>
+  Tech stack: React + Tailwind + Framer Motion. 
+*/
 
-<body>
+const RESUME_URL = "jahnavi_meesala_resume.pdf"; // Updated to a typical file name
+const LINKEDIN_URL = "https://www.linkedin.com/in/jahnavimeesala/"; // Added specific link
+const GITHUB_URL = "https://github.com/meesalji"; // Added specific link
 
-    <nav class="navbar navbar-expand-lg customNav sticky-top">
-        <a class="navbar-brand" href="#">Jahnavi Meesala</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <i class="fa fa-bars" aria-hidden="true" id="burger"></i>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="#projects">Work & Impact</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#skills">Skills & Certs</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="jahnavi_resume.pdf" target="_blank">Resume</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#contact">Contact</a>
-                </li>
-            </ul>
+// --- PROFESSIONAL COLOR PALETTE & STYLING ---
+// Accent: Used for primary CTAs and highlights (A deep, reliable tech blue)
+const ACCENT_CLASS = "bg-sky-700 text-white hover:bg-sky-800 dark:bg-sky-600 dark:hover:bg-sky-700";
+// Secondary: Used for borders and subtle background elements
+const BORDER_CLASS = "border border-neutral-200 dark:border-neutral-700";
+const BACKGROUND_CLASS = "bg-white/70 dark:bg-neutral-900/70";
+
+const skills = [
+  { label: "Java / Spring Boot", icon: Server },
+  { label: "React / TypeScript", icon: Layers },
+  { label: "Kafka / Eventing", icon: Boxes },
+  { label: "PostgreSQL / Oracle", icon: DatabaseIcon },
+  { label: "AWS / Azure", icon: Cloud },
+  { label: "Kubernetes / Docker", icon: Cpu },
+  { label: "DevSecOps / CI/CD", icon: Code }, // Changed one to better reflect senior role
+  { label: "Security / OAuth2 / PCI", icon: Shield },
+];
+
+// Custom Database Icon (used in the original structure)
+function DatabaseIcon(props){
+  return (
+    <svg className="fill-current" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" {...props}>
+      <path d="M12 2C7.58 2 4 3.79 4 6v12c0 2.21 3.58 4 8 4s8-1.79 8-4V6c0-2.21-3.58-4-8-4zm0 2c3.87 0 6 .99 6 2s-2.13 2-6 2-6-.99-6-2 2.13-2 6-2zm6 6c0 1.01-2.13 2-6 2s-6-.99-6-2m12 4c0 1.01-2.13 2-6 2s-6-.99-6-2m12 4c0 1.01-2.13 2-6 2s-6-.99-6-2"/>
+    </svg>
+  );
+}
+
+const experience = [
+  {
+    company: "Target",
+    role: "Senior Software Engineer",
+    location: "Minneapolis, MN",
+    period: "Aug 2024 – Present",
+    bullets: [
+      "Led SDLC for secure, scalable apps using **Java 11, Spring Boot, React, and TypeScript**.",
+      "Designed microservices & gRPC APIs; integrated **Kafka/RabbitMQ** for high‑throughput messaging.",
+      "Built reusable React component libraries; **OAuth2/JWT** auth; micro‑frontend architecture.",
+      "Automated CI/CD with Jenkins & GitHub Actions; shift‑left testing with JUnit/Selenium/JMeter.",
+      "Improved observability with **Prometheus, Grafana, Splunk**; enforced DevSecOps & PCI compliance.",
+    ],
+  },
+  {
+    company: "Synchrony Bank",
+    role: "Software Engineer",
+    location: "Cincinnati, OH",
+    period: "Oct 2023 – Jul 2024",
+    bullets: [
+      "Architected PCI/SOX‑compliant payment microservices (**Spring Boot, Kafka, Redis/Hazelcast**).",
+      "Designed Oracle/Postgres schemas; optimized **PL/SQL** for reporting & reconciliation.",
+      "Built CI/CD with Jenkins/Gradle; introduced trunk‑based development & feature toggles.",
+      "Provisioned **AWS** infra with Terraform; improved resiliency & disaster recovery.",
+    ],
+  },
+  {
+    company: "Harman Connected Services",
+    role: "Software Engineer",
+    location: "Bengaluru, India",
+    period: "Mar 2022 – Jul 2023",
+    bullets: [
+      "Built Java/Python services; automated deployments via **Docker/Kubernetes & Ansible**.",
+      "Delivered full‑stack (React + Java) on **Azure AKS**; implemented GraphQL/REST APIs.",
+      "Enhanced UX with responsive design and reusable UI components across devices.",
+    ],
+  },
+  {
+    company: "LabCorp",
+    role: "Software Engineer",
+    location: "Bengaluru, India",
+    period: "Mar 2020 – Feb 2022",
+    bullets: [
+      "Migrated legacy apps to **Spring Boot microservices on PCF**; automated with Terraform.",
+      "Implemented Kafka brokers for async lab results; strengthened **HIPAA‑compliant logging**.",
+    ],
+  },
+];
+
+const links = [
+  { label: "Email", href: "mailto:jahnavi.meesa@gmail.com", icon: Mail },
+  { label: "LinkedIn", href: LINKEDIN_URL, icon: Linkedin },
+  { label: "GitHub", href: GITHUB_URL, icon: Github },
+  { label: "Call", href: "tel:+18106100633", icon: Phone },
+];
+
+// --- SECTION COMPONENT REFINEMENT ---
+function Section({ id, title, children }:{ id:string; title:string; children:React.ReactNode }){
+  return (
+    <section id={id} className="max-w-6xl mx-auto px-5 md:px-8 py-16 md:py-24">
+      <motion.h2
+        className="text-2xl md:text-3xl font-bold tracking-tight text-sky-700 dark:text-sky-400 border-b border-sky-100 dark:border-sky-900 pb-2 mb-10" // Bold, accented title
+        initial={{ opacity: 0, y: 8 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5 }}
+      >
+        {title}
+      </motion.h2>
+      <div>{children}</div>
+    </section>
+  );
+}
+
+// --- NAVIGATION COMPONENT REFINEMENT ---
+function Nav(){
+  const [scrolled, setScrolled] = useState(false);
+  useEffect(()=>{
+    const onScroll = () => setScrolled(window.scrollY > 8);
+    window.addEventListener("scroll", onScroll);
+    return () => window.removeEventListener("scroll", onScroll);
+  },[]);
+  return (
+    <nav className={`fixed top-0 inset-x-0 z-50 transition ${scrolled ? "bg-white/95 dark:bg-neutral-900/95 shadow-lg border-b border-neutral-100 dark:border-neutral-800 backdrop-blur-sm" : "bg-transparent"}`}>
+      <div className="max-w-6xl mx-auto px-5 md:px-8 h-16 flex items-center justify-between">
+        <a href="#home" className="font-extrabold text-lg tracking-wider text-sky-700 dark:text-sky-400">Jahnavi</a>
+        <div className="hidden md:flex gap-8 text-sm font-medium">
+          <a href="#work" className="hover:text-sky-600 dark:hover:text-sky-400 transition">Work</a>
+          <a href="#experience" className="hover:text-sky-600 dark:hover:text-sky-400 transition">Experience</a>
+          <a href="#skills" className="hover:text-sky-600 dark:hover:text-sky-400 transition">Skills</a>
+          <a href="#contact" className="hover:text-sky-600 dark:hover:text-sky-400 transition">Contact</a>
         </div>
+        <a href={RESUME_URL} target="_blank" className={`inline-flex items-center gap-2 text-sm px-4 py-2 rounded-full font-medium transition ${ACCENT_CLASS}`} aria-label="Download resume">
+          <Download className="w-4 h-4"/>
+          <span className="hidden sm:inline">Resume</span>
+        </a>
+      </div>
     </nav>
+  );
+}
 
-    <section class="hero-section text-center">
-        <div class="container">
-            <p class="greeting-text">Hello, I'm</p>
-            <h1>Jahnavi Meesala</h1>
-            <p class="intro-tagline">A **Senior Software Engineer** with 5+ years of experience  specializing in **scalable Java microservices**, **React/NextJS** , and secure **AWS cloud deployments**[cite: 7].</p>
-            <p class="mission-statement">I build resilient, high-performance, and modular systems that drive enterprise-scale platforms.</p>
-            <div class="hero-links">
-                <a href="jahnavi_resume.pdf" target="_blank" class="btn btn-primary btn-lg mt-3">
-                    <i class="fa fa-download" aria-hidden="true"></i> View Full Resume
+// --- HERO COMPONENT REFINEMENT ---
+function Hero(){
+  return (
+    <header id="home" className="max-w-6xl mx-auto px-5 md:px-8 pt-36 md:pt-48 pb-20">
+      <motion.div initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
+        <p className="text-md uppercase tracking-[0.2em] text-neutral-500 font-semibold">Senior Software Engineer · Platform</p>
+        <h1 className="mt-4 text-4xl md:text-6xl font-extrabold leading-tight">
+          Building <span className="text-sky-700 dark:text-sky-400">resilient, human‑centered systems</span> —
+          <span className="block mt-1">from UIs to high‑scale backends.</span>
+        </h1>
+        <p className="mt-6 md:mt-8 text-lg text-neutral-600 dark:text-neutral-300 max-w-3xl">
+          **5+ years** designing and shipping distributed systems in finance, retail, and healthcare. 
+          I blend product sense with engineering depth: **React/TypeScript** on the front, **Java/Spring/Kafka** on the back, 
+          with cloud‑native **DevSecOps** end‑to‑end.
+        </p>
+        <div className="mt-8 md:mt-10 flex flex-wrap items-center gap-4">
+          <a href="#work" className={`inline-flex items-center gap-2 px-6 py-3 rounded-full font-semibold transition shadow-lg ${ACCENT_CLASS}`}>
+            View Architectural Impact <ArrowRight className="w-4 h-4"/>
+          </a>
+          <a href="#contact" className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-neutral-300 dark:border-neutral-700 hover:bg-neutral-100 dark:hover:bg-neutral-800 font-medium">
+            Contact
+          </a>
+        </div>
+        <div className="mt-10 flex gap-6 text-neutral-600 dark:text-neutral-400">
+          {links.map(l => (
+            <a key={l.label} href={l.href} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 text-sm hover:text-sky-600 dark:hover:text-sky-400 transition">
+              <l.icon className="w-5 h-5"/>
+              <span className="sr-only">{l.label}</span>
+            </a>
+          ))}
+        </div>
+      </motion.div>
+    </header>
+  );
+}
+
+// --- FEATURED WORK COMPONENT REFINEMENT ---
+function FeaturedWork(){
+  const items = [
+    {
+      title: "Realtime Payments Platform (FinTech)",
+      tag: "Java, Kafka, AWS EKS",
+      blurb: "Led development of event‑driven payment reconciliation platform using Spring Boot + Kafka on AWS (EKS, RDS, MSK). Achieved sub‑second SLAs and ensured PCI‑compliant observability.",
+      links: [ { label: "Impact Summary", href: "#" } ],
+    },
+    {
+      title: "Retail Composable UI Experience",
+      tag: "React, GraphQL, TypeScript",
+      blurb: "Engineered composable React micro‑frontends powered by GraphQL and OAuth2; established centralized design system in Storybook, resulting in 30% faster feature delivery.",
+      links: [ { label: "Design System", href: "#" } ],
+    },
+    {
+      title: "Healthcare Messaging & Security Broker",
+      tag: "Kafka, DevSecOps, HIPAA",
+      blurb: "Developed Kafka‑backed broker for lab events; managed PCF to Kubernetes migration; implemented end‑to‑end encryption and audit trails for HIPAA readiness and compliance.",
+      links: [ { label: "Architecture Notes", href: "#" } ],
+    },
+  ];
+  return (
+    <Section id="work" title="Architectural Impact & Featured Work">
+      <div className="grid md:grid-cols-3 gap-8">
+        {items.map((item, idx) => (
+          <motion.article
+            key={idx}
+            className={`group rounded-2xl ${BORDER_CLASS} p-6 md:p-8 hover:shadow-xl transition shadow-neutral-100 dark:shadow-neutral-900 ${BACKGROUND_CLASS}`}
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.5 }}
+            transition={{ duration: 0.5, delay: idx * 0.1 }}
+          >
+            <div className="text-xs uppercase tracking-widest font-bold text-sky-600 dark:text-sky-400">{item.tag}</div>
+            <h3 className="mt-3 text-xl font-bold tracking-tight text-neutral-900 dark:text-neutral-50">{item.title}</h3>
+            <p className="mt-4 text-sm text-neutral-600 dark:text-neutral-300">{item.blurb}</p>
+            <div className="mt-5 flex gap-3">
+              {item.links.map((l, i) => (
+                <a key={i} className="inline-flex items-center gap-1 text-sm font-medium hover:text-sky-700 dark:hover:text-sky-400 transition" href={l.href}>
+                  {l.label} <ExternalLink className="w-3.5 h-3.5"/>
                 </a>
-                <a href="#contact" class="btn btn-secondary btn-lg mt-3 ml-3">
-                     Discuss a Role →
-                </a>
+              ))}
             </div>
+          </motion.article>
+        ))}
+      </div>
+    </Section>
+  );
+}
+
+// --- TIMELINE COMPONENT REFINEMENT ---
+function Timeline(){
+  return (
+    <Section id="experience" title="Professional Experience">
+      <div className="relative pl-6 md:pl-8">
+        <div className="absolute left-2 top-0 bottom-0 w-1 bg-neutral-200 dark:bg-neutral-800 rounded-full"/>
+        <ul className="space-y-12">
+          {experience.map((e, idx) => (
+            <motion.li 
+              key={idx} 
+              className="relative"
+              initial={{ opacity: 0, x: -10 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.5, delay: idx * 0.05 }}
+            >
+              <span className="absolute -left-[14px] top-2 w-4 h-4 rounded-full bg-sky-700 dark:bg-sky-400 shadow-lg" />
+              <div className={`grid md:grid-cols-5 gap-4 md:gap-8 p-4 rounded-xl ${BACKGROUND_CLASS} ${BORDER_CLASS} hover:shadow-md transition`}>
+                <div className="md:col-span-2">
+                  <h3 className="font-bold tracking-tight text-lg">{e.role}</h3>
+                  <div className="text-md text-neutral-800 dark:text-neutral-100 mt-1">{e.company} · {e.location}</div>
+                  <div className="text-sm mt-1 text-neutral-500 font-medium">{e.period}</div>
+                </div>
+                <ul className="md:col-span-3 list-disc pl-5 space-y-2 text-sm [&>li>strong]:font-semibold">
+                  {/* Using dangerouslySetInnerHTML to allow bolding in the experience text */}
+                  {e.bullets.map((b, i)=> <li key={i} dangerouslySetInnerHTML={{ __html: b }}/>)}
+                </ul>
+              </div>
+            </motion.li>
+          ))}
+        </ul>
+      </div>
+    </Section>
+  );
+}
+
+// --- SKILLS COMPONENT REFINEMENT ---
+function Skills(){
+  return (
+    <Section id="skills" title="Technical Deep Dive">
+      <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+        {skills.map((s, idx) => (
+          <motion.div
+            key={idx}
+            className={`rounded-xl ${BORDER_CLASS} p-5 ${BACKGROUND_CLASS} flex items-center gap-4 hover:border-sky-400 transition hover:shadow-lg`}
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4, delay: idx * 0.03 }}
+          >
+            <s.icon className="w-6 h-6 text-sky-700 dark:text-sky-400 flex-shrink-0"/>
+            <span className="text-md font-semibold">{s.label}</span>
+          </motion.div>
+        ))}
+      </div>
+    </Section>
+  );
+}
+
+// --- EDUCATION COMPONENT REFINEMENT ---
+function Education(){
+  return (
+    <Section id="education" title="Education">
+      <div className={`rounded-xl ${BORDER_CLASS} p-6 md:p-8 ${BACKGROUND_CLASS} shadow-md`}>
+        <div className="flex items-center justify-between flex-wrap gap-2">
+          <div>
+            <div className="text-sm uppercase tracking-wider text-neutral-500">Master of Science in Information Technology</div>
+            <div className="font-bold text-xl mt-1">University of Cincinnati</div>
+            <div className="text-md text-neutral-600 dark:text-neutral-300 mt-1">Expected: Dec 2024 · Cincinnati, OH</div>
+          </div>
         </div>
-    </section>
+      </div>
+    </Section>
+  );
+}
 
-    <section class="projects-section" id="projects">
-        <div class="container">
-            <h2 class="section-title text-center">Selected Work & Architectural Impact</h2>
-
-            <div class="project-card">
-                <h3 class="project-number">01</h3>
-                <div class="project-content">
-                    <h4 class="project-title">Full SDLC & Microservice Refactoring (Target)</h4>
-                    <p class="project-description">Led full SDLC activities using **Agile/SCRUM** [cite: 25] to build secure, scalable full-stack applications with **Java 11, Spring Boot, React.js, and TypeScript**[cite: 25]. Successfully refactored and designed **gRPC and REST microservices** for high-volume retail transactions[cite: 30].</p>
-                    <span class="project-category">Java Microservices / React/NextJS / Spring Boot / GraphQL [cite: 27]</span>
-                    <a href="jahnavi_resume.pdf#target" target="_blank" class="project-link">
-                         View Details (Aug 2024 – Present) <i class="fa fa-arrow-right"></i>
-                    </a>
-                </div>
-            </div>
-
-            <div class="project-card">
-                <h3 class="project-number">02</h3>
-                <div class="project-content">
-                    <h4 class="project-title">Secure Banking Microservices & Event-Driven Systems (Synchrony)</h4>
-                    <p class="project-description">Architected secure, scalable banking microservices with **Java 11, Spring Boot, Kafka, Hazelcast, Redis**, and ActiveMQ, supporting critical payment reconciliation and credit risk workflows under **strict PCI/SOX compliance**[cite: 44]. Optimized backend with **PL/SQL** queries and schema design in Oracle/PostgreSQL[cite: 52].</p>
-                    <span class="project-category">FinTech / Kafka / Distributed Caching / PostgreSQL / PCI/SOX [cite: 44]</span>
-                    <a href="jahnavi_resume.pdf#synchrony" target="_blank" class="project-link">
-                         View Details (Oct 2023 – Jul 2024) <i class="fa fa-arrow-right"></i>
-                    </a>
-                </div>
-            </div>
-            
-            <div class="project-card">
-                <h3 class="project-number">03</h3>
-                <div class="project-content">
-                    <h4 class="project-title">Dockerization & Cloud Migration (Harman)</h4>
-                    <p class="project-description">Migrated legacy monolithic banking applications to **Dockerized microservices** deployed on **AWS + Kubernetes**[cite: 67]. Improved integration reliability by 50% by designing backend modules utilizing **Apache Camel** and **Spring Cloud Stream** for middleware communication systems[cite: 70].</p>
-                    <span class="project-category">DevOps / Docker / Kubernetes / AWS / Apache Camel</span>
-                    <a href="jahnavi_resume.pdf#harman" target="_blank" class="project-link">
-                         View Details (Mar 2022 – Jul 2023) <i class="fa fa-arrow-right"></i>
-                    </a>
-                </div>
-            </div>
-            
+// --- FOOTER/CONTACT COMPONENT REFINEMENT ---
+function Footer(){
+  return (
+    <footer id="contact" className="max-w-6xl mx-auto px-5 md:px-8 pt-8 pb-16">
+      <div className={`rounded-3xl ${BORDER_CLASS} p-8 md:p-12 bg-neutral-900 text-white dark:bg-neutral-800`}> {/* Dark/Contrast Footer */}
+        <h3 className="text-2xl md:text-3xl font-bold tracking-tight text-sky-400">Let’s engineer something impactful.</h3>
+        <p className="mt-3 text-neutral-300 max-w-3xl">
+          Open to full‑time Senior Software Engineer and Platform roles. I excel at delivering accessible, high‑performance products at enterprise scale.
+        </p>
+        <div className="mt-6 flex flex-wrap gap-3">
+          <a className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-full font-semibold transition ${ACCENT_CLASS}`} href="mailto:jahnavi.meesa@gmail.com">
+            <Mail className="w-4 h-4"/> Email
+          </a>
+          <a className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-neutral-600 text-neutral-300 hover:bg-neutral-700 transition" href={RESUME_URL} target="_blank">
+            <Download className="w-4 h-4"/> Resume
+          </a>
+          <a className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-neutral-600 text-neutral-300 hover:bg-neutral-700 transition" href={LINKEDIN_URL} target="_blank" rel="noreferrer">
+            <Linkedin className="w-4 h-4"/> LinkedIn
+          </a>
         </div>
-    </section>
-
-    <section class="about-skills-section" id="skills">
-        <div class="container">
-            <h2 class="section-title text-center">Deep Technical Expertise</h2>
-            
-            <div class="row text-center mb-5">
-                <div class="col-md-12">
-                    <h3 class="skills-heading">Certifications</h3>
-                </div>
-                <div class="col-md-6 mb-4">
-                    <div class="cert-badge"></div>
-                </div>
-                <div class="col-md-6 mb-4">
-                    <div class="cert-badge"></div>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-lg-6 mb-4">
-                    <h3 class="skills-heading">Backend & DevOps (Core)</h3>
-                    <ul class="skills-list">
-                        <li>**Core Languages/Frameworks:** Java, Spring Boot, Go, TypeScript, Python [cite: 11]</li>
-                        <li>**Cloud & DevOps:** AWS (EC2, EKS, RDS, Lambda, DynamoDB) [cite: 7, 17], Docker, Kubernetes, Jenkins, Git[cite: 18], Terraform</li>
-                        <li>**APIs & Messaging:** REST, GraphQL [cite: 7], gRPC [cite: 17], Kafka, RabbitMQ, Hazelcast, Redis [cite: 15, 16]</li>
-                    </ul>
-                </div>
-                <div class="col-lg-6 mb-4">
-                    <h3 class="skills-heading">Frontend & Data (Supporting)</h3>
-                    <ul class="skills-list">
-                        <li>**Frontend:** React, NextJS, TypeScript, HTML5/CSS3, Webpack [cite: 6, 7, 13]</li>
-                        <li>**Databases:** PostgreSQL, MySQL, MongoDB, Cassandra, DynamoDB, Oracle, PL/SQL [cite: 14]</li>
-                        <li>**Observability:** Splunk, Grafana, Prometheus, NewRelic, SonarQube, Veracode [cite: 8, 18]</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="row mt-5">
-                <div class="col-md-12">
-                    <h3 class="skills-heading">Education</h3>
-                    <p class="edu-detail">**Master of Science in Information Technology** (Dec 2024) [cite: 107]<br>
-                    University of Cincinnati, Cincinnati, OH [cite: 107]</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <footer class="contact-footer" id="contact">
-        <div class="container text-center">
-            <h2 class="section-title">Get in touch</h2>
-            <div class="contact-info">
-                <p>Email: <a href="mailto:jahnavi.meesa@gmail.com">jahnavi.meesa@gmail.com</a> [cite: 4]</p>
-                <p>Phone: <a href="tel:8106100633">810-610-0633</a> [cite: 3]</p>
-            </div>
-            <div class="social-links mt-4">
-                <a class="mx-2" href="#" target="_blank"><i class="fa fa-github" aria-hidden="true"></i></a>
-                <a class="mx-2" href="https://www.linkedin.com/in/jahnavimeesala/" target="_blank"><i class="fa fa-linkedin-square" aria-hidden="true"></i></a>
-            </div>
-            <p class="copyright-text">Jahnavi Meesala  - Senior Software Engineer [cite: 2]</p>
-        </div>
+      </div>
+      <p className="mt-10 text-xs text-neutral-500 text-center">© {new Date().getFullYear()} Jahnavi Meesala. Crafted with React and Tailwind CSS for technical clarity.</p>
     </footer>
+  );
+}
 
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-        crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-        crossorigin="anonymous"></script>
-
-</body>
-
-</html>
+export default function Portfolio(){
+  return (
+    <div className="min-h-screen bg-white dark:bg-neutral-900 font-sans text-neutral-900 dark:text-neutral-100 transition-colors">
+      <Nav/>
+      <Hero/>
+      <FeaturedWork/>
+      <Timeline/>
+      <Skills/>
+      <Education/>
+      <Footer/>
+    </div>
+  );
+}
