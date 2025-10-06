@@ -1,13 +1,14 @@
 /* ---------------------------------------------------------------------- */
-/* 1. COLOR PALETTE & VARIABLES (Inspired by Target Site) */
+/* 1. COLOR PALETTE & VARIABLES (Minimalist, High-Contrast) */
 /* ---------------------------------------------------------------------- */
 :root {
-    --primary-bg: #FFFFFF;        /* White background for most sections */
-    --secondary-bg: #F8F8F8;      /* Very light gray for alternating sections */
+    --primary-bg: #FFFFFF;        /* White background for main areas */
+    --secondary-bg: #F8F8F8;      /* Very light gray for section breaks */
     --primary-text: #222222;      /* Near-black for main text */
     --secondary-text: #666666;    /* Dark gray for descriptions */
-    --accent-color: #FFB6C1;      /* Your existing highlight (Cherry Blossom Pink) */
-    --accent-hover: #E89BB2;      /* Slightly darker pink for hover */
+    --accent-color: #007bff;      /* Professional Azure Blue (replace your pink for a corporate feel) */
+    --accent-hover: #0056b3;      
+    --footer-bg: #1c1c1c;         /* Near-black footer for a sharp finish */
     --font-heading: 'Poppins', sans-serif;
     --font-body: 'Poppins', sans-serif;
 }
@@ -17,6 +18,7 @@ body {
     font-family: var(--font-body);
     color: var(--primary-text);
     background-color: var(--primary-bg);
+    scroll-behavior: smooth;
 }
 h1, h2, h3, h4 {
     font-family: var(--font-heading);
@@ -25,20 +27,22 @@ h1, h2, h3, h4 {
 }
 p {
     color: var(--secondary-text);
-    line-height: 1.7;
+    line-height: 1.8;
 }
 .section-title {
-    font-size: 2.5rem;
+    font-size: 2.8rem;
     font-weight: 700;
-    margin-bottom: 3rem;
+    margin-bottom: 4rem;
     color: var(--primary-text);
+    text-transform: uppercase;
 }
+
 /* ---------------------------------------------------------------------- */
 /* 2. NAVIGATION BAR */
 /* ---------------------------------------------------------------------- */
 .customNav {
     background-color: var(--primary-bg);
-    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.05); /* Very light shadow */
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.05);
     border-bottom: 1px solid #eeeeee;
 }
 .navbar-brand {
@@ -46,58 +50,53 @@ p {
     font-size: 1.5rem;
     color: var(--primary-text) !important;
 }
-.navbar-toggler i {
-    color: var(--primary-text);
-    font-size: 1.5rem;
-}
 .navbar-nav .nav-link {
     color: var(--secondary-text) !important;
     font-weight: 600;
-    transition: color 0.3s, border-bottom 0.3s;
+    transition: color 0.3s;
     padding: 0.5rem 1rem !important;
 }
 .navbar-nav .nav-link:hover {
     color: var(--accent-color) !important;
-    border-bottom: 2px solid var(--accent-color);
 }
+
 /* ---------------------------------------------------------------------- */
 /* 3. HERO SECTION */
 /* ---------------------------------------------------------------------- */
 .hero-section {
-    padding: 8rem 0 6rem 0; /* Generous top/bottom padding for space */
+    padding: 10rem 0 8rem 0; 
     background-color: var(--primary-bg);
 }
 .hero-section .greeting-text {
     font-size: 1.25rem;
-    font-weight: 400;
     margin-bottom: 0.5rem;
-    color: var(--secondary-text);
 }
 .hero-section h1 {
-    font-size: 4rem;
-    font-weight: 700;
+    font-size: 4.5rem; /* Large and bold */
+    font-weight: 800;
     margin-bottom: 2rem;
     line-height: 1.1;
+    color: var(--primary-text);
 }
 .hero-section .intro-tagline {
-    font-size: 1.5rem;
-    max-width: 800px;
+    font-size: 1.6rem;
+    max-width: 900px;
     margin: 0 auto 1.5rem auto;
     font-weight: 300;
-    color: var(--secondary-text);
+    color: var(--primary-text); /* Higher contrast for key statement */
 }
 .hero-section .mission-statement {
     font-size: 1.1rem;
-    font-style: italic;
     color: var(--secondary-text);
+}
+.hero-links .btn {
+    font-weight: 600;
+    padding: 0.8rem 2.5rem;
+    border-radius: 4px;
 }
 .hero-links .btn-primary {
     background-color: var(--accent-color);
     border-color: var(--accent-color);
-    color: white;
-    font-weight: 600;
-    padding: 0.75rem 2rem;
-    transition: background-color 0.3s;
 }
 .hero-links .btn-primary:hover {
     background-color: var(--accent-hover);
@@ -107,72 +106,39 @@ p {
     background: none;
     border: 2px solid var(--secondary-text);
     color: var(--secondary-text);
-    font-weight: 600;
-    padding: 0.75rem 2rem;
-    transition: background-color 0.3s, color 0.3s;
 }
 .hero-links .btn-secondary:hover {
-    background-color: var(--primary-text);
+    background-color: var(--secondary-text);
     color: white;
-    border-color: var(--primary-text);
 }
 
 /* ---------------------------------------------------------------------- */
-/* 4. ABOUT & SKILLS SECTION */
-/* ---------------------------------------------------------------------- */
-.about-skills-section {
-    padding: 4rem 0;
-    background-color: var(--secondary-bg); /* Use light grey background for contrast */
-}
-.about-skills-section h2 {
-    font-size: 2rem;
-    border-bottom: 3px solid var(--accent-color);
-    padding-bottom: 0.5rem;
-    margin-bottom: 1.5rem;
-}
-.skills-list {
-    list-style: none;
-    padding-left: 0;
-}
-.skills-list li {
-    background-color: white;
-    padding: 10px 15px;
-    margin-bottom: 10px;
-    border-radius: 4px;
-    border-left: 5px solid var(--accent-color);
-    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-    color: var(--primary-text);
-}
-/* ---------------------------------------------------------------------- */
-/* 5. PROJECTS SECTION (Case Study Style) */
+/* 4. PROJECTS SECTION (Case Study Style - THE KEY REDESIGN) */
 /* ---------------------------------------------------------------------- */
 .projects-section {
     padding: 6rem 0;
-    background-color: var(--primary-bg);
+    background-color: var(--secondary-bg); /* Section break color */
 }
 .project-card {
     display: flex;
     align-items: flex-start;
     border-bottom: 1px solid #dddddd;
-    padding: 2.5rem 0;
-    max-width: 900px;
+    padding: 3rem 0;
+    max-width: 950px;
     margin: 0 auto;
     transition: background-color 0.3s;
 }
 .project-card:hover {
-    background-color: var(--secondary-bg);
-    cursor: pointer;
+    background-color: #f0f0f0; /* Subtle hover effect */
 }
 .project-number {
-    font-size: 3.5rem;
+    font-size: 4rem;
     font-weight: 700;
     color: var(--accent-color);
     flex-shrink: 0;
     margin-right: 3rem;
     margin-top: -10px;
-}
-.project-content {
-    flex-grow: 1;
+    opacity: 0.8;
 }
 .project-title {
     font-size: 1.75rem;
@@ -184,9 +150,12 @@ p {
 }
 .project-category {
     display: inline-block;
-    color: var(--secondary-text);
+    color: var(--accent-color);
     font-size: 0.9rem;
     font-weight: 600;
+    background-color: #e6f0ff;
+    padding: 3px 8px;
+    border-radius: 3px;
     margin-bottom: 1rem;
 }
 .project-link {
@@ -199,59 +168,103 @@ p {
 .project-link:hover {
     color: var(--accent-color);
 }
+
+/* ---------------------------------------------------------------------- */
+/* 5. SKILLS & CERTIFICATIONS SECTION */
+/* ---------------------------------------------------------------------- */
+.about-skills-section {
+    padding: 5rem 0;
+    background-color: var(--primary-bg);
+}
+.skills-heading {
+    font-size: 1.8rem;
+    border-bottom: 3px solid var(--accent-color);
+    padding-bottom: 0.5rem;
+    margin-bottom: 1.5rem;
+    color: var(--primary-text);
+}
+.skills-list {
+    list-style: none;
+    padding-left: 0;
+}
+.skills-list li {
+    padding: 8px 0;
+    border-bottom: 1px dashed #eee;
+    color: var(--secondary-text);
+}
+.skills-list li strong {
+    color: var(--primary-text);
+}
+.cert-badge {
+    height: 150px; /* Placeholder to visually represent where the badge image goes */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* Remove this background once you place the actual image */
+    background: #f0f0f0; 
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    color: #999;
+}
+.edu-detail {
+    font-size: 1.1rem;
+    line-height: 1.6;
+}
+
 /* ---------------------------------------------------------------------- */
 /* 6. CONTACT FOOTER */
 /* ---------------------------------------------------------------------- */
 .contact-footer {
     padding: 4rem 0;
-    background-color: var(--primary-text); /* Black/Dark Footer for professionalism */
+    background-color: var(--footer-bg);
     color: white;
 }
 .contact-footer .section-title {
     color: white;
-    margin-bottom: 1.5rem;
+    margin-bottom: 2rem;
 }
 .contact-footer .contact-info p {
     font-size: 1.25rem;
     color: white;
     margin: 0.5rem 0;
 }
+.contact-footer .contact-info a {
+    color: white;
+    text-decoration: underline;
+    transition: color 0.3s;
+}
+.contact-footer .contact-info a:hover {
+    color: var(--accent-color);
+}
 .social-links a {
     color: white;
     font-size: 2rem;
-    transition: color 0.3s;
 }
 .social-links a:hover {
     color: var(--accent-color);
 }
 .copyright-text {
-    color: var(--secondary-text);
+    color: #777;
     font-size: 0.85rem;
     margin-top: 2rem;
 }
 
 /* ---------------------------------------------------------------------- */
-/* 7. MEDIA QUERIES (Mobile Responsiveness) */
+/* 7. MEDIA QUERIES (Responsiveness) */
 /* ---------------------------------------------------------------------- */
-@media (max-width: 768px) {
+@media (max-width: 992px) {
     .hero-section {
-        padding: 5rem 0 3rem 0;
+        padding: 8rem 0 5rem 0;
     }
     .hero-section h1 {
-        font-size: 3rem;
-    }
-    .hero-section .intro-tagline {
-        font-size: 1.25rem;
-    }
-    .hero-links .btn {
-        display: block;
-        margin-left: 0 !important;
-        margin-bottom: 10px;
+        font-size: 3.5rem;
     }
     .project-card {
+        padding: 2rem 1rem;
         flex-direction: column;
+        align-items: center;
         text-align: center;
-        padding: 2rem 0;
     }
     .project-number {
         margin-right: 0;
@@ -259,11 +272,32 @@ p {
     }
     .project-content {
         text-align: left;
+        width: 100%;
     }
-    .project-title {
+    .project-title, .project-description, .project-category, .project-link {
         text-align: center;
+        display: block; /* Force category and link to center */
     }
-    .project-description {
-        text-align: justify;
+}
+
+@media (max-width: 576px) {
+    .hero-section h1 {
+        font-size: 2.5rem;
+    }
+    .section-title {
+        font-size: 2rem;
+        margin-bottom: 2rem;
+    }
+    .project-number {
+        font-size: 3rem;
+    }
+    .hero-links .btn {
+        display: block;
+        width: 100%;
+        margin-left: 0 !important;
+        margin-bottom: 10px;
+    }
+    .cert-badge {
+        height: 100px;
     }
 }
